@@ -2,7 +2,10 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
     const navItem = <>
-        <li>About</li>
+        <Link className="md:mr-4 md:font-semibold " to="/">Home</Link>
+        <Link className="md:mr-4 md:font-semibold " to="/alltoys">All Toys</Link>
+        <Link className="md:mr-4 md:font-semibold " to="/addatoy">Add A Toy</Link>
+        <Link className="md:mr-4 md:font-semibold " to="/blogs">Blogs</Link>
     </>
 
     return (
@@ -31,7 +34,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Get started</a>
+                <Link className="md:mr-4 md:font-semibold " to="/login">Login</Link>
             </div>
         </div>
     );
