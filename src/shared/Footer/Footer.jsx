@@ -2,7 +2,7 @@
 const Footer = () => {
     return (
         <>
-            <footer className="footer p-10 bg-base-200 text-base-content">
+            <footer className="footer p-10 bg-base-200 text-base-content mt-12 ">
                 <div>
                     <img className="w-20 overflow-hidden" src="https://i.ibb.co/F6XJLvJ/logo-removebg-preview.png" alt="" />
                     <p className="mt-[-21px]">Toys Garden Ltd.<br />Providing reliable toys since 2023</p>
@@ -20,7 +20,7 @@ const Footer = () => {
                     </div>
                 </div>
             </footer>
-            <div className="text-center bg-base-200 text-base-content pb-7">
+            <div className="text-center bg-base-200 text-base-content pb-7 mb-8">
                 <p>Copyright © 2023 - All right reserved by Toy Garden Ltd</p>
             </div>
         </>
