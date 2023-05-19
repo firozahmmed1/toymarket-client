@@ -7,6 +7,7 @@ import Blog from "../blogs/Blogs";
 import ErrorPage from "../pages/404Page/ErrorPage";
 import Login from "../pages/login/Login";
 import Registration from "../pages/Registration/Registration";
+import ViewDetails from "../pages/ViewDetails/ViewDetails";
 
 
 const router = createBrowserRouter([
@@ -35,8 +36,12 @@ const router = createBrowserRouter([
                 element:<Login></Login>
             },
             {
-                path:'registration',
+                path:'/registration',
                 element:<Registration></Registration>
+            },
+            {
+                path:'/viewdetails',
+                element:<ViewDetails></ViewDetails>
             }
             
 
