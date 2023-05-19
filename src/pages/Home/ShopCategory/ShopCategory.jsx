@@ -1,3 +1,5 @@
+import { FaRegStar, FaStar } from 'react-icons/fa';
+import Rating from 'react-rating';
 import { Link } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
@@ -20,14 +22,23 @@ const ShopCategory = () => {
                                 <img src="https://i.ibb.co/BK3vw8n/a4cc32b9c3.jpg" alt="Shoes" className="rounded-xl" />
                             </figure>
                             <div className="card-body">
-                                <h2 className="card-title">Shoes!</h2>
-                                <p>If a dog chews shoes whose shoes does he choose?</p>
+                                <h2 className="card-title">Name</h2>
+                                <p>Price: <span className='text-orange-900'>$200</span> </p>
+                                <div>
+                                    <Rating
+                                        placeholderRating={3.5}
+                                        emptySymbol={<FaRegStar className='text-orange-700'></FaRegStar>}
+                                        placeholderSymbol={<FaStar className='text-orange-700'></FaStar>}
+                                        fullSymbol={<FaStar className='text-orange-700'></FaStar>}
+                                    />
+                                    <span className='ml-1'>3.5</span>
+                                </div>
                                 <div className="card-actions flex justify-end">
                                     <Link to='/viewdetails' className="btn btn-accent text-white normal-case">View Details</Link>
                                 </div>
                             </div>
-                        </div>                              
-                     </div>
+                        </div>
+                    </div>
                 </TabPanel>
                 <TabPanel>
                     <h2>Any content 2</h2>
