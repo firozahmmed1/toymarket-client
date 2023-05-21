@@ -9,7 +9,8 @@ const Navbar = () => {
     const navItem = <>
         <Link className="md:mr-4 md:font-semibold " to="/">Home</Link>
         <Link className="md:mr-4 md:font-semibold " to="/alltoys">All Toys</Link>
-        <Link className="md:mr-4 md:font-semibold " to="/addatoy">Add A Toy</Link>
+       {user && <Link className="md:mr-4 md:font-semibold " to="/mytoys">My Toys</Link>}
+       {user && <Link className="md:mr-4 md:font-semibold " to="/addatoy">Add A Toy</Link>}
         <Link className="md:mr-4 md:font-semibold " to="/blogs">Blogs</Link>
     </>
     const handleLogOut = () => {

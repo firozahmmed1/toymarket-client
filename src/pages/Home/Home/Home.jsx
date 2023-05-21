@@ -2,10 +2,11 @@ import Header from "../../../shared/Header/Header";
 import CustomerFeedBack from "../CustomerFeedBack/CustomerFeedBack";
 import Gallery from "../Gallery/Gallery";
 import ShopCategory from "../ShopCategory/ShopCategory";
-import TrendingProduct from "../Trending/TrendingProduct";
+import TrendingProduct from "../Trending/TrendingProduct"
 
-const Home = () => {
-    return (
+
+const Home = () => { 
+   return(
         <div>
             <Header></Header>
             <Gallery></Gallery>
@@ -13,7 +14,7 @@ const Home = () => {
             <TrendingProduct></TrendingProduct>
             <CustomerFeedBack></CustomerFeedBack>
         </div>
-    );
+    )
 };
 
 export default Home;

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useContext } from "react";
 import { FaGoogle } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import Swal from "sweetalert2";
 
@@ -9,7 +9,9 @@ import Swal from "sweetalert2";
 const Login = () => {
 const {logInUser, googleSignIn} = useContext(AuthContext)
 const navigate = useNavigate();
+const location = useLocation();
 
+const from = location.state?.from?.pathname || "/";
 const handleLoginUser=event=>{
     event.preventDefault();
     const form = event.target;
@@ -64,7 +66,7 @@ const handleGoogle =()=>{
             icon: 'success',
             title: 'Successfully Login with Google'
         });
-        navigate('/');
+        navigate(from, { replace: true });
       
     })
     .catch(()=>{})

@@ -1,23 +1,71 @@
-import { useContext } from "react";
-import { useState } from "react";
+/* eslint-disable no-undef */
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import CreatableSelect from 'react-select/creatable';
 import { AuthContext } from "../../contexts/AuthProvider";
+import Swal from 'sweetalert2'
+import CreatableSelect from 'react-select/creatable'
 
-// const options = [
+
+
 //     { value: 'chocolate', label: 'Chocolate' },
 //     { value: 'strawberry', label: 'Strawberry' },
 //     { value: 'vanilla', label: 'Vanilla' },
 // ];
 const AddAToy = () => {
-    const {user} =useContext(AuthContext);
+    const [data, setdata] =useState([])
+    useEffect(()=>{
+        fetch('http://localhost:5000/allproducts')
+        .then(res => res.json())
+        .then(data => setdata(data))
+    },[])
+    const options = data.map(da=> da.sub_category);
+
     const [selectedOption, setSelectedOption] = useState(null);
+    const { user } = useContext(AuthContext);
     // eslint-disable-next-line no-unused-vars
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = data => {console.log(data)
-         data.sub_category=selectedOption;
+    const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
+    const onSubmit = data => {
+        data.sub_category=selectedOption;
+        fetch('http://localhost:5000/product', {
+            method: 'post',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    reset();
+                    let timerInterval
+                    Swal.fire({
+                        title: 'Processing for add a toy',
+                        html: 'I will close in <b></b> milliseconds.',
+                        timer: 1000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading()
+                            const b = Swal.getHtmlContainer().querySelector('b')
+                            timerInterval = setInterval(() => {
+                                b.textContent = Swal.getTimerLeft()
+                            }, 100)
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval)
+                        }
+                    }).then((result) => {
+                        /* Read more about handling dismissals below */
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            console.log('')
+                        }
+                    })
+
+                }
+
+            })
+
     };
-    
+
     return (
         <div>
             <h1 className="text-2xl text-center text-success">Please Fillup Add a Toy with Require Field</h1>
@@ -38,10 +86,9 @@ const AddAToy = () => {
                         <CreatableSelect
                             defaultValue={selectedOption}
                             onChange={setSelectedOption}
-                            // options={options}
-                            placeholder='Sub Category'
+                            options={options}
+                            placeholder="Sub Category"
                             required
-                            isMulti
                         />
                     </div>
                 </div>

@@ -1,3 +1,6 @@
+
+
+import { useEffect, useState } from 'react';
 import { FaRegStar, FaStar } from 'react-icons/fa';
 import Rating from 'react-rating';
 import { Link } from 'react-router-dom';
@@ -5,14 +8,26 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 const ShopCategory = () => {
+  const[userdata, setUserData] =useState([])
+    useEffect(()=>{
+            fetch('http://localhost:5000/allproducts')
+            .then(res=>res.json())
+            .then(data => setUserData(data));
+    },[])
+  
+  const results = userdata?.map(da=> da.sub_category);
+    // eslint-disable-next-line no-unused-vars
     return (
         <div className="mt-12 mb-12">
             <h1 className="text-4xl font-bold text-center italic text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-700">Shop By Category</h1>
             <Tabs>
                 <h1 className='text-xl text-orange-800 font-semibold'>Educational and Learning Toys</h1>
                 <TabList>
-                    <Tab><span className='font-medium bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-orange-950'>Title 1</span></Tab>
-                    <Tab>Title 2</Tab>
+                    {
+                        results.slice(4, 6).map(re =>(
+                            <Tab><span className='font-medium bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-orange-950'>{re.label}</span></Tab>
+                        ))
+                    }
                 </TabList>
 
                 <TabPanel>
@@ -39,9 +54,6 @@ const ShopCategory = () => {
                             </div>
                         </div>
                     </div>
-                </TabPanel>
-                <TabPanel>
-                    <h2>Any content 2</h2>
                 </TabPanel>
             </Tabs>
         </div>
