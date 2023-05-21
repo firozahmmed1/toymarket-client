@@ -11,7 +11,7 @@ import 'react-tabs/style/react-tabs.css';
 const ShopCategory = () => {
   const[userdata, setUserData] =useState([])
     useEffect(()=>{
-            fetch('http://localhost:5000/allproducts')
+            fetch('https://toy-market-server-pi.vercel.app/allproducts')
             .then(res=>res.json())
             .then(data => setUserData(data));
     },[])

@@ -14,7 +14,7 @@ import CreatableSelect from 'react-select/creatable'
 const AddAToy = () => {
     const [data, setdata] =useState([])
     useEffect(()=>{
-        fetch('http://localhost:5000/allproducts')
+        fetch('https://toy-market-server-pi.vercel.app/allproducts')
         .then(res => res.json())
         .then(data => setdata(data))
     },[])
@@ -26,7 +26,7 @@ const AddAToy = () => {
     const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
         data.sub_category=selectedOption;
-        fetch('http://localhost:5000/product', {
+        fetch('https://toy-market-server-pi.vercel.app/product', {
             method: 'post',
             headers: {
                 'content-type': 'application/json'

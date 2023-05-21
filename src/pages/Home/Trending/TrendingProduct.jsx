@@ -5,7 +5,7 @@ const TrendingProduct = () => {
     const [data, setData] = useState();
 
     useEffect(()=>{
-        fetch('http://localhost:5000/allproducts')
+        fetch('https://toy-market-server-pi.vercel.app/allproducts')
         .then(res=> res.json())
         .then(data=>setData(data))
     },[])
@@ -22,7 +22,7 @@ const TrendingProduct = () => {
                     </div>
                 </div>
                 <div className="absolute bottom-4 left-5">
-                        
+        
                         <p className="font-semibold text-orange-500">$ {mp?.price}</p>
                     </div>
             </div>

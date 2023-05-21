@@ -7,7 +7,7 @@ const ViewDetails = () => {
     const [data, setData]= useState([])
    const {id} =useParams();
   useEffect(()=>{
-     fetch('http://localhost:5000/allproducts')
+     fetch('https://toy-market-server-pi.vercel.app/allproducts')
      .then(res => res.json())
      .then(data => setData(data))
   },[])

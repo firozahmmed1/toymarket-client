@@ -7,7 +7,7 @@ const Update = () => {
 const user = useLoaderData();
 const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
 const onSubmit = data =>
-            fetch(`http://localhost:5000/allproduct/${user._id}`,{
+            fetch(`https://toy-market-server-pi.vercel.app/allproduct/${user._id}`,{
                 method:'put',
                 headers:{
                     'content-type': 'application/json'
