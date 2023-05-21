@@ -10,6 +10,7 @@ import Registration from "../pages/Registration/Registration";
 import ViewDetails from "../pages/ViewDetails/ViewDetails";
 import MyToys from "../pages/MyToys/MyToys";
 import PrivateRoute from "./private/PrivateRoute";
+import Update from "../pages/Update/Update";
 
 
 const router = createBrowserRouter([
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
             {
                 path:'/viewdetails',
                 element:<PrivateRoute><ViewDetails></ViewDetails></PrivateRoute>
+            },
+            {
+                path:'/update',
+                element:<Update></Update>
             }
             
 
