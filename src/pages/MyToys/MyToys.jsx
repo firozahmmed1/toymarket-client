@@ -2,6 +2,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const MyToys = () => {
 
@@ -12,7 +13,36 @@ const MyToys = () => {
         fetch(`http://localhost:5000/allproducts/${user?.email}`)
             .then(res => res.json())
             .then(data => setUser(data))
-    }, [user])
+    }, [user]);
+
+    const handleDelete =id=>{
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/allproducts/${id}`,{
+                    method:'delete'
+                })
+            .then(res=>res.json())
+            .then(data => {
+                if(data.deletedCount>0){
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                      )
+                }
+            })
+                
+            }
+          })
+    }
     return (
         <div className="overflow-x-auto">
             <table className="table w-full">
@@ -32,7 +62,9 @@ const MyToys = () => {
                 </thead>
                 <tbody>
                     {dataUser.map(da => (
-                        <tr>
+                        <tr 
+                        key={da._id}
+                        >
                         <td>
                             <div className="avatar">
                                 <div className="w-16 rounded">
@@ -48,6 +80,7 @@ const MyToys = () => {
                         <td>{da.quantity}</td>
                         <td>{da.description}</td>
                         <td><Link to={`/update/${da._id}`} className="btn btn-xs">Update</Link></td>
+                        <td><button onClick={()=>handleDelete(da._id)} className="btn btn-xs">Delete</button></td>
                     </tr>
 
                     ))}

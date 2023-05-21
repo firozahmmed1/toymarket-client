@@ -48,8 +48,10 @@ const router = createBrowserRouter([
                 element:<Registration></Registration>
             },
             {
-                path:'/viewdetails',
+                path:'/viewdetails/:id',
                 element:<PrivateRoute><ViewDetails></ViewDetails></PrivateRoute>
+                
+               
             },
             {
                 path:'/update/:id',
